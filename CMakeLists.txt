@@ -5,5 +5,11 @@ project(libkof)
 # Sets the prefix for installations
 set(CMAKE_INSTALL_PREFIX /usr/local)
 
-# Sets where other packages can find the include dirs
-set(Foo_INCLUDE_DIRS ${CMAKE_INSTALL_PREFIX}/include/libkof)
+add_subdirectory(build)
+message("Building with version: ${LIBKOF_NAMED_VERSION}")
+
+option(KOF_WITH_TESTING "Builds libkof with testing." ON)
+
+if(KOF_WITH_TESTING)
+    enable_testing()
+endif()
