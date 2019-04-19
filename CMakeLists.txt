@@ -8,6 +8,8 @@ set(CMAKE_INSTALL_PREFIX /usr/local)
 add_subdirectory(build)
 message("Building with version: ${LIBKOF_NAMED_VERSION}")
 
+add_subdirectory(include)
+
 option(KOF_WITH_TESTING "Builds libkof with testing." ON)
 
 if(KOF_WITH_TESTING)
