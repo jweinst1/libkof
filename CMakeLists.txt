@@ -15,3 +15,5 @@ option(KOF_WITH_TESTING "Builds libkof with testing." ON)
 if(KOF_WITH_TESTING)
     enable_testing()
 endif()
+
+add_subdirectory(utils)

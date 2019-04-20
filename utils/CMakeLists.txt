@@ -1,5 +1,5 @@
 # Cmake file for the utils library
 
-set(KOF_UTILS_LIB_SOURCES
-   kofmem.c
-)
+include_directories(${PROJECT_SOURCE_DIR}/include)
+
+add_subdirectory(tests)
