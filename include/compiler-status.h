@@ -3,7 +3,8 @@
 
 /**
  * The following tells us what kind of C
- * features are available to us.
+ * features are available to us. Also informs
+ * of specific requirements to the OS
  */
 #if defined(__STDC__)
 # define KOF_STD_C_1989
@@ -28,5 +29,18 @@
 #ifdef _WIN32
 #  define KOF_OS_WIN32
 #endif
+
+#ifdef WIN32_UTF16_PATHNAMES
+#  ifndef KOF_STD_C_1994
+#     include <stddef.h>
+#  else
+#     include <wchar.h>
+#  endif // KOF_STD_C_1994
+   typedef wchar_t ospath_ch_t;
+#  define OSPATH_CON(expr) L##expr
+#else
+   typedef char ospath_ch_t;
+#  define OSPATH_CON(expr) expr
+#endif // WIN32_UTF16_PATHNAMES
 
 #endif // KOF_COMPILER_STATUS_H

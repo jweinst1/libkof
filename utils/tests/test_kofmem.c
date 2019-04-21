@@ -1,4 +1,4 @@
-#include "kofmem.h"
+#include "kof-mem.h"
 #include "test-tools.h"
 
 static void test_kof_calloc(void)

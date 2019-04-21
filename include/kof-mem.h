@@ -1,5 +1,5 @@
-#ifndef KOF_MEM_H
-#define KOF_MEM_H
+#ifndef KOF_UTILS_MEM_H
+#define KOF_UTILS_MEM_H
 
 /**
  * @file Handles memory management and allocation
@@ -39,4 +39,4 @@
  */
 #define kof_mem_raw_str(size) ((char)kof_malloc(size + 1))
 
-#endif // KOF_MEM_H
+#endif // KOF_UTILS_MEM_H
