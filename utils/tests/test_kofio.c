@@ -1,8 +1,6 @@
 #include "kof-io.h"
 #include "test-tools.h"
 
-static const char* TEST_PATH_FILE = "abcdefghijk.txt";
-
 static FILE* 
 _create_temp_file(const char* data)
 {
@@ -25,15 +23,26 @@ static void test_kof_io_read_chunk(void)
 	FILE* testfp;
 	const char* writ = "100";
 	int readint = 0;
-	void* args[] = {&readint, NULL};
+	het_arr_t args = {&readint, NULL};
 	kof_io_read_cb reader = &test_io_callback;
 	testfp = _create_temp_file(writ);
 	TEST_CHECK_POINT(kof_io_read_chunk(testfp, reader, args));
 	TEST_CHECK_POINT(readint == 100);
 }
 
+static void test_kof_io_size_file(void)
+{
+	FILE* testfp;
+	size_t fsz;
+	const char* writ = "1000";
+	testfp = _create_temp_file(writ);
+	kof_io_size_file(testfp, &fsz);
+	TEST_CHECK_POINT(fsz == 4);
+}
+
 int main(int argc, char const *argv[])
 {
 	test_kof_io_read_chunk();
+	test_kof_io_size_file();
 	return 0;
 }
