@@ -30,6 +30,10 @@
 #  define KOF_OS_WIN32
 #endif
 
+#ifdef KOF_STD_C_1999
+#  define KOF_HAS_VARIADIC_ARGS
+#endif
+
 #ifdef WIN32_UTF16_PATHNAMES
 #  ifndef KOF_STD_C_1994
 #     include <stddef.h>
