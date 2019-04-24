@@ -59,13 +59,35 @@ typedef struct __kof_mem_pool
                            pool.begin = kof_malloc(init_size); \
                            pool.cur = pool.begin; \
                            pool.end = pool.begin + init_size
-
+/**
+ * Grows the memory pool exponentially if not enough space is left.
+ */
 #define KOF_MEM_POOL_GROW(pool) do { \
 	size_t old_size = pool.end - pool.begin; \
 	size_t old_len = pool.cur - pool.begin; \
-	pool.begin = realloc(pool.begin, old_size * old_size); \
-	pool.cur = poo.begin + old_len; \
+	pool.begin = kof_realloc(pool.begin, old_size * old_size); \
+	if(pool.begin == NULL) exit(KOF_MEMORY_OMM_EXIT); \
+	pool.cur = pool.begin + old_len; \
 	pool.end = pool.begin + (old_size * old_size); \
 } while (0)
+/**
+ * This sets some variable to a void pointer within the memory pool.
+ * This alloc routine can grow continuously if needed, in the chance
+ * that the request size is more than the square of the current size.
+ */
+#define KOF_MEM_POOL_ALLOC(pool, var, req_size) do { \
+    while(req_size >= KOF_MEM_POOL_SPACE(pool)) KOF_MEM_POOL_GROW(pool); \
+    var = pool.cur; \
+    pool.cur += req_size; \
+} while (0)
+/**
+ * Similar to alloc but accounts for size based on type
+ */
+#define KOF_MEM_POOL_NEW(pool, var, type, count) KOF_MEM_POOL_ALLOC(pool, var, (sizeof(type) * count))
+/**
+ * destroys and frees all the memory within the memory pool
+ */
+#define KOF_MEM_POOL_DESTROY(pool) free(pool.begin)
+
 
 #endif // KOF_UTILS_MEM_H
