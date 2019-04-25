@@ -39,6 +39,9 @@
  */
 #define kof_mem_raw_str(size) ((char)kof_malloc(size + 1))
 
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 typedef struct __kof_mem_pool
 {
@@ -46,6 +49,10 @@ typedef struct __kof_mem_pool
 	void* cur;
 	void* end;
 } kof_mem_pool_t;
+
+#ifdef __cplusplus
+}
+#endif
 
 #define KOF_MEM_POOL_SPACE(pool) (pool.end - pool.cur)
 #define KOF_MEM_POOL_LEN(pool) (pool.cur - pool.begin)
