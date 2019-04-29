@@ -9,3 +9,12 @@ extern kof_item_t* kof_item_new(const char* left_val,
 	return item;
 }
 
+extern int kof_item_equals(const kof_item_t* i1, 
+	                       const kof_item_t* i2, 
+	                       unsigned flags)
+{
+	int is_eq = 0;
+	return is_eq;
+}
+
+
