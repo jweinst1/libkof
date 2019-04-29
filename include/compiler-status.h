@@ -32,6 +32,7 @@
 
 #ifdef KOF_STD_C_1999
 #  define KOF_HAS_VARIADIC_ARGS
+#  define KOF_HAS_INLINE_FUNC
 #endif
 
 #ifdef WIN32_UTF16_PATHNAMES

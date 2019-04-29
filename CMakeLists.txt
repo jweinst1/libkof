@@ -17,3 +17,4 @@ if(KOF_WITH_TESTING)
 endif()
 
 add_subdirectory(utils)
+add_subdirectory(core)

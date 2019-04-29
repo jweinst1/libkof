@@ -8,3 +8,5 @@ set(KOF_CORE_SOURCES
 
 add_library(kof STATIC "${KOF_CORE_SOURCES}")
 add_library(kofs SHARED "${KOF_CORE_SOURCES}")
+
+add_subdirectory(tests)
